@@ -38,3 +38,14 @@ MongooseJS
 Bcryptjs
 JSONWebToken
 Colors
+
+# Steps to complete
+
+1. Create the backend
+2. `npm init`
+3. `npm i express mongoose colors`
+   3a (.gitignore)
+4. Write a simple 'hello' server.js
+5. Write an endpoint for get('/')
+   COMMIT
+   [Deployed on Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs?singlepage=true)
