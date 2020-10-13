@@ -29,11 +29,6 @@ if (process.env.NODE_ENV === 'production') {
 } else {
   app.use(express.static(path.join(__dirname, '../', 'frontend/public')))
   // Serve the React File
-  app.get('*', (req, res) => {
-    res.sendFile(
-      path.resolve(__dirname, '../', 'frontend/public', 'index.html')
-    )
-  })
 }
 
 // Mount Routes
