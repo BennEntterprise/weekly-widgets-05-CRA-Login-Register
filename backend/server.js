@@ -21,6 +21,8 @@ const app = express()
 app.use(express.json())
 app.use('/', morgan('dev'))
 
+app.use(express.static(path.join(__dirname, 'frontend/build')))
+
 
 // Mount Routes
 app.use('/api/home', (req, res)=>{
