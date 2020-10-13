@@ -21,16 +21,18 @@ app.use(express.json())
 app.use('/', morgan('dev'))
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, 'frontend/build')))
+  app.use(express.static(path.join('/', 'app/frontend/build')))
   // Serve the Prod Single Page App
   app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'frontend/build', 'index.html'))
+    res.sendFile(path.resolve('/', 'app/frontend/build', 'index.html'))
   })
 } else {
-  app.use(express.static(path.join(__dirname, 'frontend/public')))
+  app.use(express.static(path.join(__dirname, '../', 'frontend/public')))
   // Serve the React File
   app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'frontend/public', 'index.html'))
+    res.sendFile(
+      path.resolve(__dirname, '../', 'frontend/public', 'index.html')
+    )
   })
 }
 
