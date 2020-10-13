@@ -3,9 +3,11 @@ const morgan = require('morgan')
 const colors = require('colors')
 const path = require('path')
 const dotenv = require('dotenv')
+const { Console } = require('console')
 
 // Load Env Vars
 dotenv.config()
+console.log(`Attempting to Boot in ${process.env.NODE_ENV} mode....`.yellow)
 
 // Connect to DB
 
@@ -21,14 +23,17 @@ app.use(express.json())
 app.use('/', morgan('dev'))
 
 if (process.env.NODE_ENV === 'production') {
+  console.log(`Mounting Static Folder in production mode...`.yellow)
   app.use(express.static(path.join('/', 'app/frontend/build')))
-  // Serve the Prod Single Page App
   app.get('/', (req, res) => {
     res.sendFile(path.resolve('/', 'app/frontend/build', 'index.html'))
   })
 } else {
-  app.use(express.static(path.join(__dirname, '../', 'frontend/public')))
-  // Serve the React File
+  console.log(`Mounting Static Folder in development mode....`.yellow)
+  app.use(express.static(path.join(__dirname, '..', '/frontend/build')))
+  app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', '/frontend/build', 'index.html'))
+  })
 }
 
 // Mount Routes
