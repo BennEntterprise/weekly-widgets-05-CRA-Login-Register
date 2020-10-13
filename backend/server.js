@@ -23,7 +23,7 @@ app.use('/', morgan('dev'))
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join('/', 'app/frontend/build')))
   // Serve the Prod Single Page App
-  app.get('*', (req, res) => {
+  app.get('/', (req, res) => {
     res.sendFile(path.resolve('/', 'app/frontend/build', 'index.html'))
   })
 } else {
