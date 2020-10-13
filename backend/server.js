@@ -21,7 +21,11 @@ const app = express()
 app.use(express.json())
 app.use('/', morgan('dev'))
 
-app.use(express.static(path.join(__dirname, 'frontend/build')))
+if(process.env.NODE_ENV ==='production'){
+    app.use(express.static(path.join(__dirname, 'frontend/build')))
+}else{
+    app.use(express.staticpath.join(__dirname,'frontend/public' ))
+}
 
 
 // Mount Routes
